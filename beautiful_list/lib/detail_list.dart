@@ -124,6 +124,12 @@ class DetailList extends StatelessWidget {
       appBar: topAppBar,
       body: makeBody,
       bottomNavigationBar: makeBottom,
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        },
+        child: new Icon(Icons.add),
+      ),
     );
 
 
