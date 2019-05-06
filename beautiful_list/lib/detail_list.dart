@@ -1,43 +1,18 @@
 import 'package:beautiful_list/model/lesson.dart';
 import 'package:flutter/material.dart';
-import 'package:beautiful_list/detail_list.dart';
+import 'package:beautiful_list/detail_page.dart';
 
-void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: new ThemeData(
-          primaryColor: Color.fromRGBO(58, 66, 86, 1.0), fontFamily: 'Raleway'),
-      home: new ListPage(title: 'Lessons'),
-      // home: DetailPage(),
-    );
-  }
-}
-
-class ListPage extends StatefulWidget {
-  ListPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _ListPageState createState() => _ListPageState();
-}
-
-class _ListPageState extends State<ListPage> {
+class DetailList extends StatelessWidget {
   List lessons;
+  final Lesson lesson;
+  DetailList({Key key, this.lesson}) : super(key: key);
 
-  @override
-  void initState() {
-    lessons = getLessons();
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
+    lessons = getLessons();
+
     ListTile makeListTile(Lesson lesson) => ListTile(
       contentPadding:
       EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -80,7 +55,7 @@ class _ListPageState extends State<ListPage> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => DetailList(lesson: lesson)));
+                builder: (context) => DetailPage(lesson: lesson)));
       },
     );
 
@@ -135,7 +110,7 @@ class _ListPageState extends State<ListPage> {
     final topAppBar = AppBar(
       elevation: 0.1,
       backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
-      title: Text(widget.title),
+//      title: Text(widget.title),
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.list),
@@ -150,55 +125,58 @@ class _ListPageState extends State<ListPage> {
       body: makeBody,
       bottomNavigationBar: makeBottom,
     );
+
+
   }
 }
+
 
 List getLessons() {
   return [
     Lesson(
-        title: "Introduction to Driving",
+        title: "Passports",
         level: "Beginner",
         indicatorValue: 0.33,
         price: 20,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
     Lesson(
-        title: "Observation at Junctions",
+        title: "Airline Tikckets",
         level: "Beginner",
         indicatorValue: 0.33,
         price: 50,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
     Lesson(
-        title: "Reverse parallel Parking",
+        title: "Macbook Pro 15",
         level: "Intermidiate",
         indicatorValue: 0.66,
         price: 30,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
     Lesson(
-        title: "Reversing around the corner",
+        title: "iPhone",
         level: "Intermidiate",
         indicatorValue: 0.66,
         price: 30,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
     Lesson(
-        title: "Incorrect Use of Signal",
+        title: "iPad",
         level: "Advanced",
         indicatorValue: 1.0,
         price: 50,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
     Lesson(
-        title: "Engine Challenges",
+        title: "Marathon Shoes",
         level: "Advanced",
         indicatorValue: 1.0,
         price: 50,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
     Lesson(
-        title: "Self Driving Car",
+        title: "Running Wear",
         level: "Advanced",
         indicatorValue: 1.0,
         price: 50,
