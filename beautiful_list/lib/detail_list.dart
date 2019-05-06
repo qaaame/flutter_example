@@ -1,3 +1,4 @@
+import 'package:beautiful_list/entry_dialog.dart';
 import 'package:beautiful_list/model/lesson.dart';
 import 'package:flutter/material.dart';
 import 'package:beautiful_list/detail_page.dart';
@@ -119,6 +120,16 @@ class DetailList extends StatelessWidget {
       ],
     );
 
+
+    Future _openAddEntryDialog() async {
+      Navigator.of(context).push(new MaterialPageRoute<Null>(
+          builder: (BuildContext context) {
+            return new AddEntryDialog();
+          },
+          fullscreenDialog: true
+      ));
+    }
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       appBar: topAppBar,
@@ -126,15 +137,21 @@ class DetailList extends StatelessWidget {
       bottomNavigationBar: makeBottom,
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-        },
+        onPressed: _openAddEntryDialog,
         child: new Icon(Icons.add),
       ),
     );
 
 
+
+
   }
+
+
 }
+
+
+
 
 
 List getLessons() {
