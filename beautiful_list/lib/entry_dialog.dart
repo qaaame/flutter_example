@@ -6,6 +6,17 @@ class AddEntryDialog extends StatefulWidget {
 }
 
 class AddEntryDialogState extends State<AddEntryDialog> {
+
+  String _note;
+  TextEditingController _textController;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _textController = new TextEditingController(text: _note);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -24,7 +35,21 @@ class AddEntryDialogState extends State<AddEntryDialog> {
                       .copyWith(color: Colors.white))),
         ],
       ),
-      body: new Text("Foo"),
+      body: new Column(
+        children: [
+
+          new ListTile(
+            leading: new Icon(Icons.speaker_notes, color: Colors.grey[500]),
+            title: new TextField(
+              decoration: new InputDecoration(
+                hintText: 'title',
+              ),
+              controller: _textController,
+              onChanged: (value) => _note = value,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
