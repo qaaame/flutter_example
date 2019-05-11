@@ -42,12 +42,24 @@ class AddEntryDialogState extends State<AddEntryDialog> {
             leading: new Icon(Icons.speaker_notes, color: Colors.grey[500]),
             title: new TextField(
               decoration: new InputDecoration(
-                hintText: 'title',
+                hintText: 'Title',
               ),
               controller: _textController,
               onChanged: (value) => _note = value,
             ),
           ),
+
+          new ListTile(
+            leading: new Icon(Icons.speaker_notes, color: Colors.grey[500]),
+            title: new TextField(
+              decoration: new InputDecoration(
+                hintText: 'Detail',
+              ),
+              controller: _textController,
+              onChanged: (value) => _note = value,
+            ),
+          ),
+
         ],
       ),
     );
