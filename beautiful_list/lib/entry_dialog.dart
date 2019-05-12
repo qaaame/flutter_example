@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:beautiful_list/database_helper.dart';
+import 'package:beautiful_list/model/user.dart';
+
 
 class AddEntryDialog extends StatefulWidget {
   @override
@@ -6,6 +9,7 @@ class AddEntryDialog extends StatefulWidget {
 }
 
 class AddEntryDialogState extends State<AddEntryDialog> {
+  DatabaseHelper helper = DatabaseHelper();
 
   String _note;
   TextEditingController _textController;
@@ -17,6 +21,9 @@ class AddEntryDialogState extends State<AddEntryDialog> {
     _textController = new TextEditingController(text: _note);
   }
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -24,7 +31,9 @@ class AddEntryDialogState extends State<AddEntryDialog> {
         title: const Text('New entry'),
         actions: [
           new FlatButton(
-              onPressed: () {
+              onPressed:
+                  () {
+                addRecord(true);
                 //TODO: Handle save
               },
               child: new Text('SAVE',
@@ -64,4 +73,16 @@ class AddEntryDialogState extends State<AddEntryDialog> {
       ),
     );
   }
+
+  Future addRecord(bool isEdit) async {
+    var db = new DatabaseHelper();
+    var user = new User("hiroki", "kameyama", "huga");
+      await db.saveUser(user);
+
+    // ignore: illegal_assignment_to_non_assignable, missing_assignable_selector
+//    <List<User>> = db.getUser();
+    print("____________ ");
+    db.getUser();
+  }
+
 }
