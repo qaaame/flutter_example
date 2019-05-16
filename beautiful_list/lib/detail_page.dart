@@ -1,8 +1,8 @@
-import 'package:beautiful_list/model/lesson.dart';
+import 'package:beautiful_list/model/ItemDetail.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatelessWidget {
-  final Lesson lesson;
+  final ItemDetail lesson;
   DetailPage({Key key, this.lesson}) : super(key: key);
   @override
   Widget build(BuildContext context) {

@@ -1,20 +1,20 @@
 import 'package:beautiful_list/entry_dialog.dart';
-import 'package:beautiful_list/model/lesson.dart';
+import 'package:beautiful_list/model/ItemDetail.dart';
+import 'package:beautiful_list/model/ItemHeader.dart';
 import 'package:flutter/material.dart';
 import 'package:beautiful_list/detail_page.dart';
 
 class DetailList extends StatelessWidget {
   List lessons;
-  final Lesson lesson;
-  DetailList({Key key, this.lesson}) : super(key: key);
-
+  final ItemDetail lesson;
+  DetailList({Key key, this.lesson, ItemHeader ItemHeader}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     lessons = getLessons();
 
-    ListTile makeListTile(Lesson lesson) => ListTile(
+    ListTile makeListTile(ItemDetail lesson) => ListTile(
       contentPadding:
       EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       leading: Container(
@@ -56,11 +56,12 @@ class DetailList extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
+                // ignore: argument_type_not_assignable
                 builder: (context) => DetailPage(lesson: lesson)));
       },
     );
 
-    Card makeCard(Lesson lesson) => Card(
+    Card makeCard(ItemDetail lesson) => Card(
       elevation: 8.0,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child: Container(
@@ -156,49 +157,49 @@ class DetailList extends StatelessWidget {
 
 List getLessons() {
   return [
-    Lesson(
+    ItemDetail(
         title: "Passports",
         level: "Beginner",
         indicatorValue: 0.33,
         price: 20,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
+    ItemDetail(
         title: "Airline Tikckets",
         level: "Beginner",
         indicatorValue: 0.33,
         price: 50,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
+    ItemDetail(
         title: "Macbook Pro 15",
         level: "Intermidiate",
         indicatorValue: 0.66,
         price: 30,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
+    ItemDetail(
         title: "iPhone",
         level: "Intermidiate",
         indicatorValue: 0.66,
         price: 30,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
+    ItemDetail(
         title: "iPad",
         level: "Advanced",
         indicatorValue: 1.0,
         price: 50,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
+    ItemDetail(
         title: "Marathon Shoes",
         level: "Advanced",
         indicatorValue: 1.0,
         price: 50,
         content:
         "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
+    ItemDetail(
         title: "Running Wear",
         level: "Advanced",
         indicatorValue: 1.0,
