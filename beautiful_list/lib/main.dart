@@ -28,17 +28,17 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
-  List lessons;
+  List itemHeaders;
 
   @override
   void initState() {
-    lessons = getLessons();
+    itemHeaders = getItemHeaders();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    ListTile makeListTile(ItemHeader lesson) => ListTile(
+    ListTile makeListTile(ItemHeader header) => ListTile(
       contentPadding:
       EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       leading: Container(
@@ -49,7 +49,7 @@ class _ListPageState extends State<ListPage> {
         child: Icon(Icons.autorenew, color: Colors.white),
       ),
       title: Text(
-        lesson.title,
+        header.title,
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
       // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
@@ -62,14 +62,14 @@ class _ListPageState extends State<ListPage> {
                 // tag: 'hero',
                 child: LinearProgressIndicator(
                     backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                    value: lesson.indicatorValue,
+                    value: header.indicatorValue,
                     valueColor: AlwaysStoppedAnimation(Colors.green)),
               )),
           Expanded(
             flex: 4,
             child: Padding(
                 padding: EdgeInsets.only(left: 10.0),
-                child: Text(lesson.level,
+                child: Text(header.level,
                     style: TextStyle(color: Colors.white))),
           )
         ],
@@ -80,7 +80,7 @@ class _ListPageState extends State<ListPage> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => DetailList(ItemHeader: lesson)));
+                builder: (context) => DetailList(ItemHeader: header)));
       },
     );
 
@@ -98,9 +98,9 @@ class _ListPageState extends State<ListPage> {
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: lessons.length,
+        itemCount: itemHeaders.length,
         itemBuilder: (BuildContext context, int index) {
-          return makeCard(lessons[index]);
+          return makeCard(itemHeaders[index]);
         },
       ),
     );
@@ -153,7 +153,7 @@ class _ListPageState extends State<ListPage> {
   }
 }
 
-List getLessons() {
+List getItemHeaders() {
   return [
     ItemHeader(
         title: "Introduction to Driving",

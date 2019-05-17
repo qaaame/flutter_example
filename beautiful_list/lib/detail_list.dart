@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:beautiful_list/detail_page.dart';
 
 class DetailList extends StatelessWidget {
-  List lessons;
-  final ItemDetail lesson;
-  DetailList({Key key, this.lesson, ItemHeader ItemHeader}) : super(key: key);
+  List itemDetails;
+  final ItemDetail detail;
+  DetailList({Key key, this.detail, ItemHeader ItemHeader}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
-    lessons = getLessons();
+    itemDetails = getItemDetails();
 
-    ListTile makeListTile(ItemDetail lesson) => ListTile(
+    ListTile makeListTile(ItemDetail detail) => ListTile(
       contentPadding:
       EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       leading: Container(
@@ -25,7 +25,7 @@ class DetailList extends StatelessWidget {
         child: Icon(Icons.autorenew, color: Colors.white),
       ),
       title: Text(
-        lesson.title,
+        detail.title,
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
       // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
@@ -38,14 +38,14 @@ class DetailList extends StatelessWidget {
                 // tag: 'hero',
                 child: LinearProgressIndicator(
                     backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                    value: lesson.indicatorValue,
+                    value: detail.indicatorValue,
                     valueColor: AlwaysStoppedAnimation(Colors.green)),
               )),
           Expanded(
             flex: 4,
             child: Padding(
                 padding: EdgeInsets.only(left: 10.0),
-                child: Text(lesson.level,
+                child: Text(detail.level,
                     style: TextStyle(color: Colors.white))),
           )
         ],
@@ -57,16 +57,16 @@ class DetailList extends StatelessWidget {
             context,
             MaterialPageRoute(
                 // ignore: argument_type_not_assignable
-                builder: (context) => DetailPage(lesson: lesson)));
+                builder: (context) => DetailPage(lesson: detail)));
       },
     );
 
-    Card makeCard(ItemDetail lesson) => Card(
+    Card makeCard(ItemDetail detail) => Card(
       elevation: 8.0,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
-        child: makeListTile(lesson),
+        child: makeListTile(detail),
       ),
     );
 
@@ -75,9 +75,9 @@ class DetailList extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: lessons.length,
+        itemCount: itemDetails.length,
         itemBuilder: (BuildContext context, int index) {
-          return makeCard(lessons[index]);
+          return makeCard(itemDetails[index]);
         },
       ),
     );
@@ -155,7 +155,7 @@ class DetailList extends StatelessWidget {
 
 
 
-List getLessons() {
+List getItemDetails() {
   return [
     ItemDetail(
         title: "Passports",
