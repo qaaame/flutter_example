@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:beautiful_list/database_helper.dart';
-import 'package:beautiful_list/model/user.dart';
+import 'package:beautiful_list/model/detail.dart';
 
 
 class AddEntryDialog extends StatefulWidget {
@@ -76,13 +76,14 @@ class AddEntryDialogState extends State<AddEntryDialog> {
 
   Future addRecord(bool isEdit) async {
     var db = new DatabaseHelper();
-    var user = new User("hiroki", "kameyama", "huga");
-      await db.saveUser(user);
+//    var user = new User("hiroki", "kameyama", "huga");
+    var detail = new Detail("hiroki", "kameyama", "huga");
+      await db.saveDetail(detail);
 
     // ignore: illegal_assignment_to_non_assignable, missing_assignable_selector
 //    <List<User>> = db.getUser();
     print("____________ ");
-    db.getUser();
+    db.getDetail();
   }
 
 }

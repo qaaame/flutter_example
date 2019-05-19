@@ -1,6 +1,9 @@
+import 'package:beautiful_list/database_helper.dart';
 import 'package:beautiful_list/model/ItemHeader.dart';
+import 'package:beautiful_list/model/header.dart';
 import 'package:flutter/material.dart';
 import 'package:beautiful_list/detail_list.dart';
+import 'package:beautiful_list/header_entry_dialog.dart';
 
 void main() => runApp(new MyApp());
 
@@ -29,16 +32,40 @@ class ListPage extends StatefulWidget {
 
 class _ListPageState extends State<ListPage> {
   List itemHeaders;
+  Future<List<Header>> hoge;
 
   @override
   void initState() {
     itemHeaders = getItemHeaders();
+
+
+
+
+//    hoge = db.getHeader();
+
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    ListTile makeListTile(ItemHeader header) => ListTile(
+    var db = new DatabaseHelper();
+//    FutureBuilder(
+//        future: db.getHeader(),
+//        builder: (context, future) {
+//          if (!future.hasData) {
+//            return Center(child: CircularProgressIndicator());
+//          }
+//
+//          print('++++++ debug  ++++++');
+//          print(future.data.body);
+//        }
+//    );
+
+
+
+//    ListTile makeListTile(ItemHeader header) => ListTile(
+        ListTile makeListTile(Header header) => ListTile(
       contentPadding:
       EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       leading: Container(
@@ -48,12 +75,11 @@ class _ListPageState extends State<ListPage> {
                 right: new BorderSide(width: 1.0, color: Colors.white24))),
         child: Icon(Icons.autorenew, color: Colors.white),
       ),
+
       title: Text(
         header.title,
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
-      // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
       subtitle: Row(
         children: <Widget>[
           Expanded(
@@ -76,15 +102,18 @@ class _ListPageState extends State<ListPage> {
       ),
       trailing:
       Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => DetailList(ItemHeader: header)));
-      },
+// TODO  一旦コメントアウト。タップした際に遷移するところ
+//      onTap: () {
+//        Navigator.push(
+//            context,
+//            MaterialPageRoute(
+////                builder: (context) => DetailList(ItemHeader: header)));
+//        builder: (context) => DetailList(Header: header)));
+//      },
     );
 
-    Card makeCard(ItemHeader lesson) => Card(
+//    Card makeCard(ItemHeader lesson) => Card(
+    Card makeCard(Header lesson) => Card(
       elevation: 8.0,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child: Container(
@@ -93,17 +122,48 @@ class _ListPageState extends State<ListPage> {
       ),
     );
 
-    final makeBody = Container(
-      // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: itemHeaders.length,
-        itemBuilder: (BuildContext context, int index) {
-          return makeCard(itemHeaders[index]);
-        },
-      ),
+//    final makeBody = Container(
+//      // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
+//      child: ListView.builder(
+//        scrollDirection: Axis.vertical,
+//        shrinkWrap: true,
+//        itemCount: itemHeaders.length,
+////        itemCount: hoge.length,
+//
+//        itemBuilder: (BuildContext context, int index) {
+//          return makeCard(itemHeaders[index]);
+//        },
+//      ),
+//    );
+
+
+//    body: FutureBuilder<List<Header>>(
+    final makeBody =FutureBuilder<List<Header>>(
+      future: db.getHeader(),
+      builder: (BuildContext context, AsyncSnapshot<List<Header>> snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            itemCount: snapshot.data.length,
+            itemBuilder: (BuildContext context, int index) {
+
+              Header header = snapshot.data[index];
+
+              return makeCard(header);
+
+//        itemBuilder: (BuildContext context, int index) {
+//          return makeCard(itemHeaders[index]);
+//        },
+            },
+          );
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
     );
+
+
+
+
 
     final makeBottom = Container(
       height: 55.0,
@@ -144,11 +204,26 @@ class _ListPageState extends State<ListPage> {
       ],
     );
 
+
+    Future _openAddEntryDialog() async {
+      Navigator.of(context).push(new MaterialPageRoute<Null>(
+          builder: (BuildContext context) {
+            return new AddEntryDialog();
+          },
+          fullscreenDialog: true
+      ));
+    }
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       appBar: topAppBar,
       body: makeBody,
       bottomNavigationBar: makeBottom,
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: _openAddEntryDialog,
+        child: new Icon(Icons.add),
+      ),
     );
   }
 }

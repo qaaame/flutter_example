@@ -1,13 +1,14 @@
-import 'package:beautiful_list/entry_dialog.dart';
+import 'package:beautiful_list/detail_entry_dialog.dart';
 import 'package:beautiful_list/model/ItemDetail.dart';
 import 'package:beautiful_list/model/ItemHeader.dart';
+import 'package:beautiful_list/model/header.dart';
 import 'package:flutter/material.dart';
 import 'package:beautiful_list/detail_page.dart';
 
 class DetailList extends StatelessWidget {
   List itemDetails;
   final ItemDetail detail;
-  DetailList({Key key, this.detail, ItemHeader ItemHeader}) : super(key: key);
+  DetailList({Key key, this.detail, ItemHeader ItemHeader, Header ItemList}) : super(key: key);
 
 
   @override
