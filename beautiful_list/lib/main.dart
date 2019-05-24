@@ -1,5 +1,5 @@
 import 'package:beautiful_list/database_helper.dart';
-import 'package:beautiful_list/model/ItemHeader.dart';
+//import 'package:beautiful_list/model/ItemHeader.dart';
 import 'package:beautiful_list/model/header.dart';
 import 'package:flutter/material.dart';
 import 'package:beautiful_list/detail_list.dart';
@@ -36,7 +36,7 @@ class _ListPageState extends State<ListPage> {
 
   @override
   void initState() {
-    itemHeaders = getItemHeaders();
+//    itemHeaders = getItemHeaders();
 
 
 
@@ -103,13 +103,13 @@ class _ListPageState extends State<ListPage> {
       trailing:
       Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
 // TODO  一旦コメントアウト。タップした際に遷移するところ
-//      onTap: () {
-//        Navigator.push(
-//            context,
-//            MaterialPageRoute(
-////                builder: (context) => DetailList(ItemHeader: header)));
-//        builder: (context) => DetailList(Header: header)));
-//      },
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+//                builder: (context) => DetailList(ItemHeader: header)));
+        builder: (context) => DetailList(header: header)));
+      },
     );
 
 //    Card makeCard(ItemHeader lesson) => Card(
@@ -228,56 +228,56 @@ class _ListPageState extends State<ListPage> {
   }
 }
 
-List getItemHeaders() {
-  return [
-    ItemHeader(
-        title: "Introduction to Driving",
-        level: "Beginner",
-        indicatorValue: 0.33,
-        price: 20,
-        content:
-        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    ItemHeader(
-        title: "Observation at Junctions",
-        level: "Beginner",
-        indicatorValue: 0.33,
-        price: 50,
-        content:
-        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    ItemHeader(
-        title: "Reverse parallel Parking",
-        level: "Intermidiate",
-        indicatorValue: 0.66,
-        price: 30,
-        content:
-        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    ItemHeader(
-        title: "Reversing around the corner",
-        level: "Intermidiate",
-        indicatorValue: 0.66,
-        price: 30,
-        content:
-        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    ItemHeader(
-        title: "Incorrect Use of Signal",
-        level: "Advanced",
-        indicatorValue: 1.0,
-        price: 50,
-        content:
-        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    ItemHeader(
-        title: "Engine Challenges",
-        level: "Advanced",
-        indicatorValue: 1.0,
-        price: 50,
-        content:
-        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    ItemHeader(
-        title: "Self Driving Car",
-        level: "Advanced",
-        indicatorValue: 1.0,
-        price: 50,
-        content:
-        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed.  ")
-  ];
-}
+//List getItemHeaders() {
+//  return [
+//    ItemHeader(
+//        title: "Introduction to Driving",
+//        level: "Beginner",
+//        indicatorValue: 0.33,
+//        price: 20,
+//        content:
+//        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
+//    ItemHeader(
+//        title: "Observation at Junctions",
+//        level: "Beginner",
+//        indicatorValue: 0.33,
+//        price: 50,
+//        content:
+//        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
+//    ItemHeader(
+//        title: "Reverse parallel Parking",
+//        level: "Intermidiate",
+//        indicatorValue: 0.66,
+//        price: 30,
+//        content:
+//        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
+//    ItemHeader(
+//        title: "Reversing around the corner",
+//        level: "Intermidiate",
+//        indicatorValue: 0.66,
+//        price: 30,
+//        content:
+//        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
+//    ItemHeader(
+//        title: "Incorrect Use of Signal",
+//        level: "Advanced",
+//        indicatorValue: 1.0,
+//        price: 50,
+//        content:
+//        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
+//    ItemHeader(
+//        title: "Engine Challenges",
+//        level: "Advanced",
+//        indicatorValue: 1.0,
+//        price: 50,
+//        content:
+//        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
+//    ItemHeader(
+//        title: "Self Driving Car",
+//        level: "Advanced",
+//        indicatorValue: 1.0,
+//        price: 50,
+//        content:
+//        "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed.  ")
+//  ];
+//}
